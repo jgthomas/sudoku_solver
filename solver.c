@@ -1,17 +1,39 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 
-enum sizes {ROW = 4, COL = 4, BOX_ACROSS = 2, BOX_DOWN = 2, ROW_PER_BOX = 2, COL_PER_BOX = 2};
+enum sizes {ROW = 4,
+            COL = 4,
+            BOX_ACROSS = 2,
+            BOX_DOWN = 2,
+            ROW_PER_BOX = 2,
+            COL_PER_BOX = 2,
+            TOTAL_SQUARES = 16};
 
 
-void print_grid(int grid[ROW][COL]);
+typedef struct Square {
+        int num;
+        bool part_of_puzzle;
+}
+Square;
+
+
+typedef struct Grid {
+        Square *squares[ROW][COL];
+}
+Grid;
+
+
 bool box_contains(int grid[ROW][COL], int min_row, int min_col, int find);
 bool row_contains(int grid[ROW][COL], int row, int find);
 bool col_contains(int grid[ROW][COL], int col, int find);
 int min_col(int col);
 int min_row(int row);
 bool num_allowed(int grid[ROW][COL], int row, int col, int num);
+Square *make_square(int num, bool part_of_puzzle);
+Grid *make_grid(int grid[ROW][COL]);
+void print_puzzle(Grid *puzzle);
 
 
 int main()
@@ -29,9 +51,11 @@ int main()
                           {0,4,0,3},
                           {0,1,0,0}};
 
+
+    Grid *puzzle = make_grid(grid);
+    print_puzzle(puzzle);
+
     int num = 4;
-    
-    print_grid(grid);
     
     for (int row = 0; row < ROW; row++)
     {
@@ -43,8 +67,43 @@ int main()
             }
         }
     }
+}
 
-    print_grid(grid);
+
+Grid *make_grid(int grid[ROW][COL])
+{
+        Grid *puzzle = malloc(sizeof(*puzzle));
+
+        for (int row = 0; row < ROW; row++)
+        {
+                for (int col = 0; col < COL; col++)
+                {
+                        int num = grid[row][col];
+                        Square *square;
+
+                        if (num == 0)
+                        {
+                                square = make_square(num, false);
+                        }
+                        else
+                        {
+                                square = make_square(num, true);
+                        }
+
+                        puzzle->squares[row][col] = square;
+                }
+        }
+
+        return puzzle;
+}
+
+
+Square *make_square(int num, bool part_of_puzzle)
+{
+        Square *square = malloc(sizeof(*square));
+        square->num = num;
+        square->part_of_puzzle = part_of_puzzle;
+        return square;
 }
 
 
@@ -146,22 +205,24 @@ bool col_contains(int grid[ROW][COL], int col, int find)
 }
 
 
-void print_grid(int grid[ROW][COL])
+void print_puzzle(Grid *puzzle)
 {
-    for (int row = 0; row < ROW; row++) 
-    {
-        for (int col = 0; col < COL; col++) 
+        for (int row = 0; row < ROW; row++)
         {
-            if (grid[row][col] == 0)
-            {
-                printf("_  ");
-            }
-            else
-            {
-                printf("%d  ", grid[row][col]);
-            }
+                for (int col = 0; col < COL; col++)
+                {
+                        int num = puzzle->squares[row][col]->num;
+
+                        if (num == 0)
+                        {
+                                printf("_  ");
+                        }
+                        else
+                        {
+                                printf("%d  ", num);
+                        }
+                }
+                printf("\n");
         }
         printf("\n");
-    }
-    printf("\n");
 }
