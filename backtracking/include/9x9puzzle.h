@@ -1,5 +1,5 @@
-#ifndef 9X9PUZZLE_H
-#define 9X9PUZZLE_H
+#ifndef NINE_PUZZLE_H
+#define NINE_PUZZLE_H
 
 enum sizes {ROW = 9,
             COL = 9,

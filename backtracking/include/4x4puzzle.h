@@ -1,5 +1,5 @@
-#ifndef 4X4PUZZLE_H
-#define 4X4PUZZLE_H
+#ifndef FOUR_PUZZLE_H
+#define FOUR_PUZZLE_H
 
 enum sizes {ROW = 4,
             COL = 4,

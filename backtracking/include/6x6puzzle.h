@@ -1,5 +1,5 @@
-#ifndef 6X6PUZZLE_H
-#define 6X6PUZZLE_H
+#ifndef SIX_PUZZLE_H
+#define SIX_PUZZLE_H
 
 enum sizes {ROW = 6,
             COL = 6,
