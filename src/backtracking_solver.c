@@ -308,13 +308,13 @@ int min_row(int row)
 
 void print_puzzle(Grid *puzzle)
 {
-        print_divider(ROW);
+        print_divider(puzzle->ROW);
 
-        for (int row = 0; row < ROW; row++)
+        for (int row = 0; row < puzzle->ROW; row++)
         {
                 printf("|");
 
-                for (int col = 0; col < COL; col++)
+                for (int col = 0; col < puzzle->COL; col++)
                 {
                         int num = puzzle->squares[row][col]->num;
                         
@@ -327,15 +327,15 @@ void print_puzzle(Grid *puzzle)
                                 printf(" %d ", num);
                         }
 
-                        if ((col+1) % COL_PER_BOX == 0)
+                        if ((col+1) % puzzle->COL_PER_BOX == 0)
                         {
                             printf("|");
                         }
                 }
 
-                if ((row+1) % ROW_PER_BOX == 0)
+                if ((row+1) % puzzle->ROW_PER_BOX == 0)
                 {
-                    print_divider(ROW);
+                    print_divider(puzzle->ROW);
                 }
                 else
                 {
