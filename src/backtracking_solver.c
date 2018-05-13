@@ -167,9 +167,9 @@ Grid *make_grid(int grid_size, int grid[ROW][COL])
         puzzle->TOTAL_SQUARES = pow(grid_size, 2);
         puzzle->MAX_NUM = grid_size;
 
-        for (int row = 0; row < ROW; row++)
+        for (int row = 0; row < puzzle->ROW; row++)
         {
-                for (int col = 0; col < COL; col++)
+                for (int col = 0; col < puzzle->COL; col++)
                 {
                         int num = grid[row][col];
                         Square *square;
