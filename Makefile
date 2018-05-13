@@ -1,5 +1,5 @@
 # PROJECT DIRS - location of filetypes
-BUILD_DIR = ../build
+BUILD_DIR = ./build
 INCLUDE_DIR = ./include
 SOURCE_DIR = ./src
 
