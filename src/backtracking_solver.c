@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <ctype.h>
 #include "grid.h"
 #include "backtracking_solver.h"
 #include "display_grid.h"
@@ -9,11 +10,39 @@
 #include "9x9puzzle.h"
 
 
-int main()
-{
-    int grid_size = 9;
+bool is_number(char input[]);
 
-    Grid *puzzle = make_grid(grid_size, grid9x9_1);
+
+int main(int argc, char *argv[])
+{
+    Grid *puzzle;
+
+    int BIG_GRID = 9;
+    int SMALL_GRID = 4;
+
+    int grid_size = BIG_GRID;
+
+    if (argc > 1)
+    {
+            if (is_number(argv[1]))
+            {
+                    int n = atoi(argv[1]);
+                    if (n == SMALL_GRID)
+                    {
+                            grid_size = n;
+                    }
+            }
+    }
+
+    if (grid_size == SMALL_GRID)
+    {
+            puzzle = make_grid(grid_size, grid4x4_1);
+    }
+    else
+    {
+            puzzle = make_grid(grid_size, grid9x9_1);
+    }
+
     print_puzzle(puzzle);
     solve_puzzle(puzzle);
     print_puzzle(puzzle);
@@ -277,4 +306,21 @@ int min_row(Grid *puzzle, int row)
     }
     
     return min_row;
+}
+
+
+bool is_number(char input[])
+{
+        int i = 0;
+        if (input[0] == '-') {
+                i = 1;
+        }
+        for (i = i; input[i] != 0; i++)
+        {
+                if(!isdigit(input[i]))
+                {
+                        return false;
+                }
+        }
+        return true;
 }
