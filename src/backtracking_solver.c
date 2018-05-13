@@ -162,6 +162,11 @@ Grid *make_grid(int grid_size, int grid[ROW][COL])
         puzzle->ROW = grid_size;
         puzzle->COL = grid_size;
         puzzle->BOX_ACROSS = sqrt(grid_size);
+        puzzle->BOX_DOWN = sqrt(grid_size);
+        puzzle->ROW_PER_BOX = sqrt(grid_size);
+        puzzle->COL_PER_BOX = sqrt(grid_size);
+        puzzle->TOTAL_SQUARES = pow(grid_size, 2);
+        puzzle->MAX_NUM = grid_size;
 
         for (int row = 0; row < ROW; row++)
         {
