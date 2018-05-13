@@ -1,15 +1,7 @@
 #ifndef FOUR_PUZZLE_H
 #define FOUR_PUZZLE_H
 
-enum sizes {ROW = 4,
-            COL = 4,
-            BOX_ACROSS = 2,
-            BOX_DOWN = 2,
-            ROW_PER_BOX = 2,
-            COL_PER_BOX = 2,
-            TOTAL_SQUARES = 16,
-            MAX_NUM = 4};
-
+enum sizes {ROW = 4, COL = 4};
 
 int grid4x4_1[ROW][COL] = {{0,0,4,2},
                            {4,0,3,0},

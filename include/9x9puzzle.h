@@ -1,15 +1,7 @@
 #ifndef NINE_PUZZLE_H
 #define NINE_PUZZLE_H
 
-enum sizes {ROW = 9,
-            COL = 9,
-            BOX_ACROSS = 3,
-            BOX_DOWN = 3,
-            ROW_PER_BOX = 3,
-            COL_PER_BOX = 3,
-            TOTAL_SQUARES = 81,
-            MAX_NUM = 9};
-
+enum sizes {ROW = 9, COL = 9};
 
 int grid9x9_1[ROW][COL] = 
                 {{1,0,0,5,0,6,8,0,0},
