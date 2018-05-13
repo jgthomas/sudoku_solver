@@ -4,5 +4,6 @@
 #include "grid.h"
 
 void print_divider(int len);
+void print_puzzle(Grid *puzzle);
 
 #endif
