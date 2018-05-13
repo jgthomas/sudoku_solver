@@ -136,7 +136,7 @@ bool fill_square(Grid *puzzle, int row, int col)
         first_try = 1;
     }
     
-    for (int num = first_try; num <= MAX_NUM; num++)
+    for (int num = first_try; num <= puzzle->MAX_NUM; num++)
     {
         if (num_allowed(puzzle, row, col, num))
         {
