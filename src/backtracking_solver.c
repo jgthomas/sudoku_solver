@@ -58,9 +58,9 @@ int main()
 
 void delete_puzzle(Grid *puzzle)
 {
-    for (int row = 0; row < ROW; row++)
+    for (int row = 0; row < puzzle->ROW; row++)
     {
-        for (int col = 0; col < COL; col++)
+        for (int col = 0; col < puzzle->COL; col++)
         {
             free(puzzle->squares[row][col]);
         }
