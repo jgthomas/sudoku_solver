@@ -254,8 +254,8 @@ bool col_contains(Grid *puzzle, int col, int find)
 
 bool box_contains(Grid *puzzle, int min_row, int min_col, int find)
 {
-    int max_row = min_row + (ROW / BOX_DOWN);
-    int max_col = min_col + (COL / BOX_ACROSS);
+    int max_row = min_row + (puzzle->ROW / puzzle->BOX_DOWN);
+    int max_col = min_col + (puzzle->COL / puzzle->BOX_ACROSS);
     
     for (int row = min_row; row < max_row; row++)
     {
