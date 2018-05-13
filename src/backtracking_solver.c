@@ -5,7 +5,7 @@
 #include "grid.h"
 #include "backtracking_solver.h"
 #include "display_grid.h"
-//#include "4x4puzzle.h"
+#include "4x4puzzle.h"
 #include "9x9puzzle.h"
 
 
