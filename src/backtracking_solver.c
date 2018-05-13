@@ -71,7 +71,6 @@ void solve_puzzle(Grid *puzzle)
     int row = 0;
     int col = 0;
     bool moving_forward = true;
-
     int current_square_num = (row * puzzle->ROW) + col;
 
     while (current_square_num < puzzle->TOTAL_SQUARES)
