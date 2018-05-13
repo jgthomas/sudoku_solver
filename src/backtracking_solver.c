@@ -73,11 +73,11 @@ void solve_puzzle(Grid *puzzle)
 {
     int row = 0;
     int col = 0;
-    int square = (row * ROW) + col;
+    int square = (row * puzzle->ROW) + col;
     Square *square_ptr = NULL;
     bool moving_forward = true;
 
-    while (square < TOTAL_SQUARES)
+    while (square < puzzle->TOTAL_SQUARES)
     {
         square_ptr = puzzle->squares[row][col];
         
@@ -103,7 +103,7 @@ void solve_puzzle(Grid *puzzle)
             moving_forward = false;
         }
 
-        if (col >= COL)
+        if (col >= puzzle->COL)
         {
             row++;
             col = 0;
@@ -118,10 +118,10 @@ void solve_puzzle(Grid *puzzle)
             else
             {
                 row--;
-                col = COL-1;
+                col = puzzle->COL - 1;
             }
         }
-        square = (row * ROW) + col;
+        square = (row * puzzle->ROW) + col;
     }
 }
 
