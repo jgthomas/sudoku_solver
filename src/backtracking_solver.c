@@ -16,6 +16,14 @@ Square;
 
 typedef struct Grid {
         Square *squares[ROW][COL];
+        int ROW;
+        int COL;
+        int BOX_ACROSS;
+        int BOX_DOWN;
+        int ROW_PER_BOX;
+        int COL_PER_BOX;
+        int TOTAL_SQUARES;
+        int MAX_NUM;
 }
 Grid;
 
