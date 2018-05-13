@@ -76,7 +76,7 @@ void solve_puzzle(Grid *puzzle)
     int square = (row * ROW) + col;
     Square *square_ptr = NULL;
     bool moving_forward = true;
-    
+
     while (square < TOTAL_SQUARES)
     {
         square_ptr = puzzle->squares[row][col];
