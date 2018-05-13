@@ -2,30 +2,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include "grid.h"
 #include "display_grid.h"
 //#include "4x4puzzle.h"
 #include "9x9puzzle.h"
-
-
-typedef struct Square {
-        int num;
-        bool part_of_puzzle;
-}
-Square;
-
-
-typedef struct Grid {
-        Square **squares;
-        int ROW;
-        int COL;
-        int BOX_ACROSS;
-        int BOX_DOWN;
-        int ROW_PER_BOX;
-        int COL_PER_BOX;
-        int TOTAL_SQUARES;
-        int MAX_NUM;
-}
-Grid;
 
 
 bool row_contains(Grid *puzzle, int row, int find);
