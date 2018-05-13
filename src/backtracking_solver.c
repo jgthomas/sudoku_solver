@@ -203,60 +203,6 @@ bool num_allowed(Grid *puzzle, int row, int col, int num)
 }
 
 
-int min_col(int col)
-{
-    int min_col = 0;
-    
-    if (col >= 2 * COL_PER_BOX)
-    {
-        min_col = 2 * COL_PER_BOX;
-    }
-    else if (col >= COL_PER_BOX)
-    {
-        min_col = COL_PER_BOX;
-    }
-    
-    return min_col;
-}
-
-
-int min_row(int row)
-{
-    int min_row = 0;
-    
-    if (row >= 2 * ROW_PER_BOX)
-    {
-        min_row = 2 * ROW_PER_BOX;
-    }
-    else if (row >= ROW_PER_BOX)
-    {
-        min_row = ROW_PER_BOX;
-    }
-    
-    return min_row;
-}
-
-
-bool box_contains(Grid *puzzle, int min_row, int min_col, int find)
-{
-    int max_row = min_row + (ROW / BOX_DOWN);
-    int max_col = min_col + (COL / BOX_ACROSS);
-    
-    for (int row = min_row; row < max_row; row++)
-    {
-        for (int col = min_col; col < max_col; col++)
-        {
-            if (puzzle->squares[row][col]->num == find)
-            {
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-
 bool row_contains(Grid *puzzle, int row, int find)
 {
     for (int col = 0; col < COL; col++)
@@ -282,6 +228,60 @@ bool col_contains(Grid *puzzle, int col, int find)
     }
     
     return false;
+}
+
+
+bool box_contains(Grid *puzzle, int min_row, int min_col, int find)
+{
+    int max_row = min_row + (ROW / BOX_DOWN);
+    int max_col = min_col + (COL / BOX_ACROSS);
+    
+    for (int row = min_row; row < max_row; row++)
+    {
+        for (int col = min_col; col < max_col; col++)
+        {
+            if (puzzle->squares[row][col]->num == find)
+            {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+
+int min_col(int col)
+{
+    int min_col = 0;
+
+    if (col >= 2 * COL_PER_BOX)
+    {
+        min_col = 2 * COL_PER_BOX;
+    }
+    else if (col >= COL_PER_BOX)
+    {
+        min_col = COL_PER_BOX;
+    }
+    
+    return min_col;
+}
+
+
+int min_row(int row)
+{
+    int min_row = 0;
+
+    if (row >= 2 * ROW_PER_BOX)
+    {
+        min_row = 2 * ROW_PER_BOX;
+    }
+    else if (row >= ROW_PER_BOX)
+    {
+        min_row = ROW_PER_BOX;
+    }
+    
+    return min_row;
 }
 
 
