@@ -24,7 +24,7 @@ void print_puzzle(Grid *puzzle)
 
                 for (int col = 0; col < puzzle->COL; col++)
                 {
-                        int num = puzzle->squares[col * puzzle->COL + row]->num;
+                        int num = puzzle->squares[row * puzzle->ROW + col]->num;
                         
                         if (num == 0)
                         {
