@@ -189,7 +189,7 @@ Grid *make_grid(int grid_size, int grid[grid_size][grid_size])
                                 square = make_square(num, true);
                         }
 
-                        puzzle->squares[col * puzzle->COL + row] = square;
+                        puzzle->squares[row * puzzle->ROW + col] = square;
                 }
         }
 
