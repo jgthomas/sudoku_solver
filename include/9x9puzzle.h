@@ -1,9 +1,8 @@
 #ifndef NINE_PUZZLE_H
 #define NINE_PUZZLE_H
 
-enum sizes {ROW = 9, COL = 9};
 
-int grid9x9_1[ROW][COL] = 
+int grid9x9_1[9][9] =
                 {{1,0,0,5,0,6,8,0,0},
                  {5,0,0,0,0,0,0,1,0},
                  {0,2,0,4,3,0,9,0,5},
