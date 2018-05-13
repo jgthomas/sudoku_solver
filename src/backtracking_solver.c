@@ -33,8 +33,8 @@ bool row_contains(Grid *puzzle, int row, int find);
 bool col_contains(Grid *puzzle, int col, int find);
 bool box_contains(Grid *puzzle, int min_row, int min_col, int find);
 bool num_allowed(Grid *puzzle, int row, int col, int num);
-int min_col(int col);
-int min_row(int row);
+int min_col(Grid *puzzle, int col);
+int min_row(Grid *puzzle, int row);
 Square *make_square(int num, bool part_of_puzzle);
 //Grid *make_grid(int grid[ROW][COL]);
 Grid *make_grid(int grid_size, int grid[ROW][COL]);
@@ -210,8 +210,8 @@ Square *make_square(int num, bool part_of_puzzle)
 
 bool num_allowed(Grid *puzzle, int row, int col, int num)
 {
-    int m_row = min_row(row);
-    int m_col = min_col(col);
+    int m_row = min_row(puzzle, row);
+    int m_col = min_col(puzzle, col);
 
     if (!row_contains(puzzle, row, num) &&
         !col_contains(puzzle, col, num) &&
@@ -272,34 +272,34 @@ bool box_contains(Grid *puzzle, int min_row, int min_col, int find)
 }
 
 
-int min_col(int col)
+int min_col(Grid *puzzle, int col)
 {
     int min_col = 0;
 
-    if (col >= 2 * COL_PER_BOX)
+    if (col >= 2 * puzzle->COL_PER_BOX)
     {
-        min_col = 2 * COL_PER_BOX;
+        min_col = 2 * puzzle->COL_PER_BOX;
     }
-    else if (col >= COL_PER_BOX)
+    else if (col >= puzzle->COL_PER_BOX)
     {
-        min_col = COL_PER_BOX;
+        min_col = puzzle->COL_PER_BOX;
     }
     
     return min_col;
 }
 
 
-int min_row(int row)
+int min_row(Grid *puzzle, int row)
 {
     int min_row = 0;
 
-    if (row >= 2 * ROW_PER_BOX)
+    if (row >= 2 * puzzle->ROW_PER_BOX)
     {
-        min_row = 2 * ROW_PER_BOX;
+        min_row = 2 * puzzle->ROW_PER_BOX;
     }
-    else if (row >= ROW_PER_BOX)
+    else if (row >= puzzle->ROW_PER_BOX)
     {
-        min_row = ROW_PER_BOX;
+        min_row = puzzle->ROW_PER_BOX;
     }
     
     return min_row;
