@@ -76,7 +76,7 @@ void solve_puzzle(Grid *puzzle)
 
     while (square < puzzle->TOTAL_SQUARES)
     {
-        square_ptr = puzzle->squares[col * puzzle->COL + row];
+        square_ptr = puzzle->squares[row * puzzle->ROW + col];
         
         if (square_ptr->part_of_puzzle)
         {
@@ -125,7 +125,7 @@ void solve_puzzle(Grid *puzzle)
 
 bool fill_square(Grid *puzzle, int row, int col)
 {
-    int curr_num = puzzle->squares[col * puzzle->COL + row]->num;
+    int curr_num = puzzle->squares[row * puzzle->ROW + col]->num;
     int first_try = curr_num;
     
     if (curr_num == 0)
@@ -137,11 +137,11 @@ bool fill_square(Grid *puzzle, int row, int col)
     {
         if (num_allowed(puzzle, row, col, num))
         {
-            puzzle->squares[col * puzzle->COL + row]->num = num;
+            puzzle->squares[row * puzzle->ROW + col]->num = num;
             return true;
         }
     }
-    puzzle->squares[col * puzzle->COL + row]->num = 0;
+    puzzle->squares[row * puzzle->ROW + col]->num = 0;
     return false;
 }
 
@@ -233,7 +233,7 @@ bool row_contains(Grid *puzzle, int row, int find)
 {
     for (int col = 0; col < puzzle->COL; col++)
     {
-        if (puzzle->squares[col * puzzle->COL + row]->num == find)
+        if (puzzle->squares[row * puzzle->ROW + col]->num == find)
         {
             return true;
         }
@@ -247,7 +247,7 @@ bool col_contains(Grid *puzzle, int col, int find)
 {
     for (int row = 0; row < puzzle->ROW; row++)
     {
-        if (puzzle->squares[col * puzzle->COL + row]->num == find)
+        if (puzzle->squares[row * puzzle->ROW + col]->num == find)
         {
             return true;
         }
@@ -266,7 +266,7 @@ bool box_contains(Grid *puzzle, int min_row, int min_col, int find)
     {
         for (int col = min_col; col < max_col; col++)
         {
-            if (puzzle->squares[col * puzzle->COL + row]->num == find)
+            if (puzzle->squares[row * puzzle->ROW + col]->num == find)
             {
                 return true;
             }
