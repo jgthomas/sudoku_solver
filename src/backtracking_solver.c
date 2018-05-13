@@ -36,7 +36,6 @@ bool num_allowed(Grid *puzzle, int row, int col, int num);
 int min_col(Grid *puzzle, int col);
 int min_row(Grid *puzzle, int row);
 Square *make_square(int num, bool part_of_puzzle);
-//Grid *make_grid(int grid[ROW][COL]);
 Grid *make_grid(int grid_size, int grid[ROW][COL]);
 void print_puzzle(Grid *puzzle);
 bool fill_square(Grid *puzzle, int row, int col);
