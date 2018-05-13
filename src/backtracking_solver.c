@@ -43,8 +43,10 @@ int main(int argc, char *argv[])
             puzzle = make_grid(grid_size, grid9x9_1);
     }
 
+    printf("\nPUZZLE\n");
     print_puzzle(puzzle);
     solve_puzzle(puzzle);
+    printf("\nSOLUTION\n");
     print_puzzle(puzzle);
     delete_puzzle(puzzle);
 }
