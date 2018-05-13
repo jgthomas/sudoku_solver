@@ -1,6 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
+#include <stdbool.h>
+
 typedef struct Square {
         int num;
         bool part_of_puzzle;
