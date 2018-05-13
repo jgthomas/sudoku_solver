@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 #include "display_grid.h"
 //#include "4x4puzzle.h"
 //#include "6x6puzzle.h"
@@ -35,7 +36,8 @@ bool num_allowed(Grid *puzzle, int row, int col, int num);
 int min_col(int col);
 int min_row(int row);
 Square *make_square(int num, bool part_of_puzzle);
-Grid *make_grid(int grid[ROW][COL]);
+//Grid *make_grid(int grid[ROW][COL]);
+Grid *make_grid(int grid_size, int grid[ROW][COL]);
 void print_puzzle(Grid *puzzle);
 bool fill_square(Grid *puzzle, int row, int col);
 void solve_puzzle(Grid *puzzle);
@@ -44,7 +46,9 @@ void delete_puzzle(Grid *puzzle);
 
 int main()
 {
-    Grid *puzzle = make_grid(grid9x9_1);
+    int grid_size = 9;
+
+    Grid *puzzle = make_grid(grid_size, grid9x9_1);
     print_puzzle(puzzle);
     solve_puzzle(puzzle);
     print_puzzle(puzzle);
@@ -145,7 +149,7 @@ bool fill_square(Grid *puzzle, int row, int col)
 }
 
 
-Grid *make_grid(int grid[ROW][COL])
+Grid *make_grid(int grid_size, int grid[ROW][COL])
 {
         Grid *puzzle = malloc(sizeof(*puzzle));
         
@@ -154,6 +158,10 @@ Grid *make_grid(int grid[ROW][COL])
             fprintf(stderr, "Failed to allocate memory for puzzle\n");
             exit(EXIT_FAILURE);
         }
+
+        puzzle->ROW = grid_size;
+        puzzle->COL = grid_size;
+        puzzle->BOX_ACROSS = sqrt(grid_size);
 
         for (int row = 0; row < ROW; row++)
         {
