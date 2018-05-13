@@ -226,7 +226,7 @@ bool num_allowed(Grid *puzzle, int row, int col, int num)
 
 bool row_contains(Grid *puzzle, int row, int find)
 {
-    for (int col = 0; col < COL; col++)
+    for (int col = 0; col < puzzle->COL; col++)
     {
         if (puzzle->squares[row][col]->num == find)
         {
@@ -240,7 +240,7 @@ bool row_contains(Grid *puzzle, int row, int find)
 
 bool col_contains(Grid *puzzle, int col, int find)
 {
-    for (int row = 0; row < ROW; row++)
+    for (int row = 0; row < puzzle->ROW; row++)
     {
         if (puzzle->squares[row][col]->num == find)
         {
