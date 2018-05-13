@@ -4,7 +4,6 @@
 #include <math.h>
 #include "display_grid.h"
 //#include "4x4puzzle.h"
-//#include "6x6puzzle.h"
 #include "9x9puzzle.h"
 
 
