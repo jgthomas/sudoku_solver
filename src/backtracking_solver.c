@@ -15,7 +15,8 @@ Square;
 
 
 typedef struct Grid {
-        Square *squares[ROW][COL];
+        //Square *squares[ROW][COL];
+        Square **squares2;
         int ROW;
         int COL;
         int BOX_ACROSS;
@@ -60,9 +61,11 @@ void delete_puzzle(Grid *puzzle)
     {
         for (int col = 0; col < puzzle->COL; col++)
         {
-            free(puzzle->squares[row][col]);
+            //free(puzzle->squares[row][col]);
+            free(puzzle->squares2[col * puzzle->COL + row]);
         }
     }
+    free(puzzle->squares2);
     free(puzzle);
 }
 
@@ -77,7 +80,8 @@ void solve_puzzle(Grid *puzzle)
 
     while (square < puzzle->TOTAL_SQUARES)
     {
-        square_ptr = puzzle->squares[row][col];
+        //square_ptr = puzzle->squares[row][col];
+        square_ptr = puzzle->squares2[col * puzzle->COL + row];
         
         if (square_ptr->part_of_puzzle)
         {
@@ -126,7 +130,8 @@ void solve_puzzle(Grid *puzzle)
 
 bool fill_square(Grid *puzzle, int row, int col)
 {
-    int curr_num = puzzle->squares[row][col]->num;
+    //int curr_num = puzzle->squares[row][col]->num;
+    int curr_num = puzzle->squares2[col * puzzle->COL + row]->num;
     int first_try = curr_num;
     
     if (curr_num == 0)
@@ -138,11 +143,13 @@ bool fill_square(Grid *puzzle, int row, int col)
     {
         if (num_allowed(puzzle, row, col, num))
         {
-            puzzle->squares[row][col]->num = num;
+            //puzzle->squares[row][col]->num = num;
+            puzzle->squares2[col * puzzle->COL + row]->num = num;
             return true;
         }
     }
-    puzzle->squares[row][col]->num = 0;
+    //puzzle->squares[row][col]->num = 0;
+    puzzle->squares2[col * puzzle->COL + row]->num = 0;
     return false;
 }
 
@@ -154,6 +161,14 @@ Grid *make_grid(int grid_size, int grid[grid_size][grid_size])
         if (puzzle == NULL)
         {
             fprintf(stderr, "Failed to allocate memory for puzzle\n");
+            exit(EXIT_FAILURE);
+        }
+
+        puzzle->squares2 = malloc(sizeof(*puzzle->squares2) * grid_size * grid_size);
+
+        if (puzzle->squares2 == NULL)
+        {
+            fprintf(stderr, "Failed to allocate memory for squares\n");
             exit(EXIT_FAILURE);
         }
 
@@ -182,7 +197,8 @@ Grid *make_grid(int grid_size, int grid[grid_size][grid_size])
                                 square = make_square(num, true);
                         }
 
-                        puzzle->squares[row][col] = square;
+                        //puzzle->squares[row][col] = square;
+                        puzzle->squares2[col * puzzle->COL + row] = square;
                 }
         }
 
@@ -226,7 +242,8 @@ bool row_contains(Grid *puzzle, int row, int find)
 {
     for (int col = 0; col < puzzle->COL; col++)
     {
-        if (puzzle->squares[row][col]->num == find)
+        //if (puzzle->squares[row][col]->num == find)
+        if (puzzle->squares2[col * puzzle->COL + row]->num == find)
         {
             return true;
         }
@@ -240,7 +257,8 @@ bool col_contains(Grid *puzzle, int col, int find)
 {
     for (int row = 0; row < puzzle->ROW; row++)
     {
-        if (puzzle->squares[row][col]->num == find)
+        //if (puzzle->squares[row][col]->num == find)
+        if (puzzle->squares2[col * puzzle->COL + row]->num == find)
         {
             return true;
         }
@@ -259,7 +277,8 @@ bool box_contains(Grid *puzzle, int min_row, int min_col, int find)
     {
         for (int col = min_col; col < max_col; col++)
         {
-            if (puzzle->squares[row][col]->num == find)
+            //if (puzzle->squares[row][col]->num == find)
+            if (puzzle->squares2[col * puzzle->COL + row]->num == find)
             {
                 return true;
             }
@@ -304,6 +323,46 @@ int min_row(Grid *puzzle, int row)
 }
 
 
+//void print_puzzle(Grid *puzzle)
+//{
+//        print_divider(puzzle->ROW);
+//
+//        for (int row = 0; row < puzzle->ROW; row++)
+//        {
+//                printf("|");
+//
+//                for (int col = 0; col < puzzle->COL; col++)
+//                {
+//                        int num = puzzle->squares[row][col]->num;
+//                        
+//                        if (num == 0)
+//                        {
+//                                printf(" - ");
+//                        }
+//                        else
+//                        {
+//                                printf(" %d ", num);
+//                        }
+//
+//                        if ((col+1) % puzzle->COL_PER_BOX == 0)
+//                        {
+//                            printf("|");
+//                        }
+//                }
+//
+//                if ((row+1) % puzzle->ROW_PER_BOX == 0)
+//                {
+//                    print_divider(puzzle->ROW);
+//                }
+//                else
+//                {
+//                    printf("\n");
+//                }
+//        }
+//        printf("\n");
+//}
+
+
 void print_puzzle(Grid *puzzle)
 {
         print_divider(puzzle->ROW);
@@ -314,7 +373,8 @@ void print_puzzle(Grid *puzzle)
 
                 for (int col = 0; col < puzzle->COL; col++)
                 {
-                        int num = puzzle->squares[row][col]->num;
+                        //int num = puzzle->squares[row][col]->num;
+                        int num = puzzle->squares2[col * puzzle->COL + row]->num;
                         
                         if (num == 0)
                         {
