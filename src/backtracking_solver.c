@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-            puzzle = make_grid(grid_size, grid9x9_1);
+            puzzle = make_grid(grid_size, grid9x9_hard);
     }
 
     printf("\nPUZZLE\n");
