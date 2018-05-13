@@ -70,15 +70,15 @@ void solve_puzzle(Grid *puzzle)
 {
     int row = 0;
     int col = 0;
-    int square = (row * puzzle->ROW) + col;
-    Square *square_ptr = NULL;
     bool moving_forward = true;
 
-    while (square < puzzle->TOTAL_SQUARES)
+    int current_square_num = (row * puzzle->ROW) + col;
+
+    while (current_square_num < puzzle->TOTAL_SQUARES)
     {
-        square_ptr = puzzle->squares[row * puzzle->ROW + col];
+        Square *current_square = puzzle->squares[current_square_num];
         
-        if (square_ptr->part_of_puzzle)
+        if (current_square->part_of_puzzle)
         {
             if (moving_forward)
             {
@@ -118,7 +118,7 @@ void solve_puzzle(Grid *puzzle)
                 col = puzzle->COL - 1;
             }
         }
-        square = (row * puzzle->ROW) + col;
+        current_square_num = (row * puzzle->ROW) + col;
     }
 }
 
